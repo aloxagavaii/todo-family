@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <h1>
+        Список задач
+        <like-button :counter.sync="headerLikes"></like-button>
+        <dislike-button v-model="headerDislikes"></dislike-button>
+      </h1>
+      <h3>количество лайков - {{ countLikes() }}</h3>
+      <h3>количество дизлайков - {{ countDislikes() }}</h3>
+      <div v-if="count == 0">герой!</div>
+      <div v-else-if="count == 1">почти,стервец!</div>
+      <div v-else>
+        Осталось сделать задач: <span class="counter">{{ count }}</span>
+      </div>
+      <task-list v-if="count != 0" :tasks="uncompletedTasks"></task-list>
+      <div class="form">
+        <input v-on:keyup.enter="addTask()" v-model="message" />
+        <button type="submit" @click="addTask()">Добавить</button>
+        <like-button :counter.sync="formLikes"></like-button>
+        <dislike-button v-model="formDislikes"></dislike-button>
+      </div>
+      <transition name="fade">
+        <img
+          src="https://southsideisd.org/losoya/wp-content/uploads/sites/7/2018/10/evan-kirby-142074-unsplash.jpg"
+          v-show="count == 0"
+        />
+      </transition>
+      <div class="list">
+        <task-list v-if="countDone() != 0" :tasks="completedTasks"></task-list>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
