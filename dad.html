@@ -16,19 +16,7 @@
     <script defer src="./todo-app.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        let defArray = [
-          {
-            id: 1,
-            name: "понять javascript",
-            done: false,
-          },
-        ];
-        createTodoApp(
-          document.getElementById("todo-app"),
-          "Мои дела",
-          "my-list2",
-          defArray
-        );
+        createTodoApp(document.getElementById("todo-app"), "Дела папы", "dad");
       });
     </script>
   </head>
